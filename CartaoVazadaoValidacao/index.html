@@ -1,153 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vazamento de dados</title>
+        <link rel="stylesheet" href="style.css" />
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vazamento de dados</title>
-    <link rel="stylesheet" href="style.css" />
-    
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    </head>
 
-</head>
+    <body>
+        <h1>Veja se seu cartão vazou na internet</h1>
 
-<body>
-    
-    <h1>Veja se seu cartão vazou na internet</h1>
-
-    <main>
-
-        <form>
-
-            <div class="inputs">
-
-                <div class="input-box">
-                    <label for="titular">
-                        Nome do titular
-                        <div class="input-field">
-                            <input type="text" id="titular" placeholder="NOME TITULAR" name="titular" minlength="3"
-                                required />
-                        </div>
-                    </label>
+        <main>
+            <form>
+                <div class="inputs">
+                    <div class="input-box">
+                        <label for="titular">
+                            Nome do titular
+                            <div class="input-field">
+                                <input type="text" id="titular" placeholder="NOME TITULAR" name="titular" minlength="3" required />
+                            </div>
+                        </label>
+                    </div>
+                    <div class="input-box">
+                        <label for="card-number">
+                            Número do Cartão
+                            <div class="input-field">
+                                <input type="text" id="card-number" name="card-number" data-mask="0000 0000 0000 0000" min="0" placeholder="XXXX XXXX XXXX XXXX" required />
+                            </div>
+                        </label>
+                    </div>
+                    <div class="input-box">
+                        <label for="cvv">
+                            Código de Segurança (CVV)
+                            <div class="input-field">
+                                <input type="number" id="cvv" name="cvv" placeholder="XXX" oninput="maxLen(this, 'cvv')" min="0" required />
+                            </div>
+                        </label>
+                    </div>
+                    <div class="input-box">
+                        <label for="validade">
+                            Data de Validade
+                            <div class="input-field">
+                                <input type="text" id="validade" name="validade" placeholder="MM/AA" required />
+                            </div>
+                        </label>
+                    </div>
+                    <div class="input-box">
+                        <label for="senha">
+                            Senha do Cartão
+                            <div class="input-field">
+                                <input type="nunmber" id="senha" name="senha" required />
+                            </div>
+                        </label>
+                    </div>
+                    <div class="input-box">
+                        <label for="cep">
+                            CEP
+                            <div class="input-field">
+                                <input type="nunmber" id="cep" name="cep" placeholder="XXXXX-XXX" required />
+                            </div>
+                        </label>
+                    </div>
+                    <div class="input-box">
+                        <label for="cpf">
+                            CPF
+                            <div class="input-field">
+                                <input type="nunmber" id="cpf" name="cpf" placeholder="XXX.XXX.XXX-XX" required />
+                            </div>
+                        </label>
+                    </div>
                 </div>
-                <div class="input-box">
-                    <label for="card-number">
-                        Número do Cartão
-                        <div class="input-field">
-                            <input 
-                                type="text" 
-                                id="card-number" 
-                                name="card-number" 
-                                data-mask="0000 0000 0000 0000" min="0" 
-                                placeholder="XXXX XXXX XXXX XXXX" required />
-                        </div>
-                    </label>
-                </div>
-                <div class="input-box">
-                    <label for="cvv">
-                        Código de Segurança (CVV)
-                        <div class="input-field">
-                            <input type="number" id="cvv" 
-                            name="cvv" placeholder="XXX" oninput="maxLen(this, 'cvv')"
-                                min="0" required />
-                        </div>
-                    </label>
-                </div>
-                <div class="input-box">
-                    <label for="validade">
-                        Data de Validade
-                        <div class="input-field">
-                            <input type="text" 
-                            id="validade" 
-                            name="validade" 
-                            placeholder="MM/AA" required />
-                        </div>
-                    </label>
-                </div>
-                <div class="input-box">
-                    <label for="senha">
-                        Senha do Cartão
-                        <div class="input-field">
-                            <input type="nunmber" 
-                            id="senha" 
-                            name="senha" 
-                            required />
-                        </div>
-                    </label>
-                </div>
-                <div class="input-box">
-                    <label for="cep">
-                        CEP
-                        <div class="input-field">
-                            <input type="nunmber" 
-                            id="cep" 
-                            name="cep" 
-                            placeholder="XXXXX-XXX"
-                            required />
-                        </div>
-                    </label>
-                </div>
+                <button id="validate" onclick="validate()">Verificar</button>
+            </form>
+        </main>
+    </body>
+    <script>
+        $(document).ready(function () {
+            $("#card-number").mask("0000 0000 0000 0000");
 
+            $("#validade").mask("00/00");
+            $("#cep").mask("00000-000");
 
-            </div>
-            <button id="validate" onclick="validate()">Verificar</button>
+            $("#cpf").mask("000.000.000-00");
+        });
 
-        </form>
+        function maxLen(input, type) {
+            input.value = input.value.replace("-", "");
 
-    </main>
-</body>
-<script>
+            switch (type) {
+                case "card":
+                    if (input.value.length > 16) {
+                        input.value = input.value.slice(0, 16);
+                    }
 
-    $(document).ready(function () {
-        $('#card-number').mask('0000 0000 0000 0000');
+                    break;
+                case "cvv":
+                    if (input.value.length > 3) {
+                        input.value = input.value.slice(0, 3);
+                    }
 
-        $('#validade').mask('00/00');
-        $('#cep').mask('00000-000');
+                    break;
+                case "expdate":
+                    if (input.value.length > 4) {
+                        input.value = input.value.slice(0, 4);
+                    }
 
-    });
+                    break;
 
-    function maxLen(input, type) {
-
-        input.value = input.value.replace('-', '')
-
-        switch (type) {
-            case 'card':
-                if (input.value.length > 16) {
-                    input.value = input.value.slice(0, 16);
-                }
-
-                break;
-            case 'cvv':
-                if (input.value.length > 3) {
-                    input.value = input.value.slice(0, 3);
-                }
-
-                break;
-            case 'expdate':
-                if (input.value.length > 4) {
-                    input.value = input.value.slice(0, 4);
-                }
-
-                break;
-
-            default:
-                break;
+                default:
+                    break;
+            }
         }
 
-    }
+        function validate_card_number() {
+            const card_number = document.getElementById("card-number");
+            console.log(`card_number: ${card_number}`, card_number);
+        }
 
-    function validate_card_number() {
-        const card_number = document.getElementById('card-number')
-        console.log(`card_number: ${card_number}`, card_number)
-    }
-
-    function validate() {
-        validate_card_number()
-        // alert('Nenhum dado vazado')
-    }
-</script>
-
-
+        function validate() {
+            validate_card_number();
+            // alert('Nenhum dado vazado')
+        }
+    </script>
 </html>
