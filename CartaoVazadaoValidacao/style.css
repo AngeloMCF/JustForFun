@@ -1,0 +1,109 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+    color: #000;
+}
+
+/* html {
+    background-image: url('cidade-industrial.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+
+} */
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-size: 16px;
+    /* background-color: aquamarine; */
+    /* background-image: url('cidade-industrial.jpg'); */
+    /* margin-top: 15px;
+    margin-left: 15px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    /* background-image: url('./cidade-industrial.jpg'); */
+    /* background-image: url('./forest.jpg'); */
+    background-image: url('./aurora-boreal.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+h1 {
+    color: #fff;
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+.inputs {
+    padding: 10px;
+    /* background-color: rgba(255, 0, 0, 1); */
+    width: 400px;
+
+}
+
+
+form {
+    padding: 10px;
+    background-color: rgb(218, 218, 218);
+    width: 100%;
+    height: 100%;
+    /* height: 300px; */
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border-radius: 15px;
+}
+
+.input-box {
+    margin-top: 10px;
+    width: 100%;
+
+}
+
+.input-field {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    padding-left: 5px;
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 4px;
+    text-transform: capitalize;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+input[type="text"] {
+    text-transform: capitalize;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+#validate {
+    margin-top: 20px;
+    font-size: 35px;
+    width: 100%;
+    border-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    background-color: rgb(41, 199, 146);
+}
